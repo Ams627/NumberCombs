@@ -13,23 +13,23 @@ namespace NumberCombs
         {
             try
             {
-                var limit = 3 * 3;
-                limit *= limit;
-                limit *= limit;
+                var digits = 9;
+                var limit = 1;
+                for (int i = 0; i < digits - 1; i++)
+                {
+                    limit *= 3;
+                }
 
+                Console.WriteLine();
                 for (int i = 0; i < limit; ++i)
                 {
-                    var opers = GetInBase3(i);
+                    var opers = GetInBase3(i, digits - 1);
 
                     var result = 1;
                     var digit = 2;
 
                     var list = new List<int>();
                     Console.WriteLine($"op: {opers}");
-                    if (opers == "01200200")
-                    {
-                        Console.WriteLine();
-                    }
                     foreach (var op in opers)
                     {
                         if (op == '0')
@@ -72,10 +72,10 @@ namespace NumberCombs
 
         }
 
-        private static string GetInBase3(int n)
+        private static string GetInBase3(int n, int digits)
         {
             string s = "";
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < digits; i++)
             {
                 var c = (char)('0' + (n % 3));
                 s += c;
